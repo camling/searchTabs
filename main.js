@@ -1,5 +1,11 @@
 function add_search_tabs()
 {
+    const pathname = window.location.pathname;
+
+    if(pathname.includes("youth"))
+    {
+        return;
+    }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const searchType = urlParams.get("te");
@@ -13,8 +19,19 @@ function add_search_tabs()
 
     function update_value(value)
     {
-        let str = value.substring(1);
-        str = str .substring(0, str .indexOf(':'));
+
+        let str = value;
+        if(value.includes(":"))
+        {
+            str = value.substring(1);
+            str = str .substring(0, str .indexOf(':'));
+        }
+
+        if(value.includes("BYOUTH_"))
+        {
+            str = value.substring(1);
+        }
+       
         return str;
 
     }
