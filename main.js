@@ -2,6 +2,7 @@ function add_search_tabs()
 {
     const pathname = window.location.pathname;
 
+    // Stop program from working on profiles you want want it on IE youth
     if(pathname.includes("youth"))
     {
         return;
@@ -10,7 +11,6 @@ function add_search_tabs()
     const urlParams = new URLSearchParams(queryString);
     const searchType = urlParams.get("te");
     const query = urlParams.get("qu");
-    const searchViewContainer = document.getElementById("searchViewDISCOVERY_ALL");
     const searchWrapper = document.querySelector(".searchResults_wrapper");
     
     const searchTabs = document.createElement("div");
@@ -25,11 +25,6 @@ function add_search_tabs()
         {
             str = value.substring(1);
             str = str .substring(0, str .indexOf(':'));
-        }
-
-        if(value.includes("BYOUTH_"))
-        {
-            str = value.substring(1);
         }
        
         return str;
