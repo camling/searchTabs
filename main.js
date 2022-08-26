@@ -3,7 +3,7 @@ function add_search_tabs()
     const pathname = window.location.pathname;
 
     // Stop program from working on profiles you want want it on IE youth
-    if(pathname.includes("youth"))
+    if(pathname.includes("youth") || pathname.includes("mylists") )
     {
         return;
     }
