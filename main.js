@@ -31,6 +31,26 @@ function get_substring_by_character(string, character = ":") {
 	return str;
 }
 
+/**
+ * Creates an anchor element and a corresponding searchTab div element for search tab links.
+ *
+ * @function createSearchTabLink
+ * @param {string} query - The search query parameter to include in the link.
+ * @param {string} searchValue - The search type parameter to include in the link.
+ * @returns {{ anchor: HTMLAnchorElement, searchTab: HTMLDivElement }} An object containing the created anchor and searchTab elements.
+ * @description This function creates an anchor element with an href attribute formed from the current window's origin, pathname,
+ * and the provided search query and type parameters. It also creates a searchTab div element and returns both elements as an object.
+ */
+function createSearchTabLink(query, searchValue) {
+	const anchor = document.createElement("a");
+	anchor.href = `${window.location.origin}${window.location.pathname}?qu=${query}&te=${searchValue}`;
+
+	const searchTab = document.createElement("div");
+	searchTab.classList.add("searchTab");
+
+	return { anchor, searchTab };
+}
+
 function add_search_tabs() {
 	// Stop program from working on profiles you want want it on IE youth
 	if (checkURL("youth") || checkURL("mylists")) {
@@ -57,19 +77,7 @@ function add_search_tabs() {
 		console.log(textValue);
 		console.log(searchValue);
 
-		let anchor = document.createElement("a");
-		anchor.href =
-			window.location.protocol +
-			"//" +
-			window.location.hostname +
-			window.location.pathname +
-			"?qu=" +
-			query +
-			"&" +
-			"te=" +
-			searchValue;
-
-		let searchTab = document.createElement("div");
+		let { anchor, searchTab } = createSearchTabLink(query, searchValue);
 		searchTab.classList.add("searchTab");
 
 		if (searchType == searchValue) {
@@ -83,17 +91,11 @@ function add_search_tabs() {
 		searchTabs.appendChild(anchor);
 	}
 
-	let anchor_all = document.createElement("a");
-	anchor_all.href =
-		window.location.protocol +
-		"//" +
-		window.location.hostname +
-		window.location.pathname +
-		"?qu=" +
-		query +
-		"&" +
-		"te=";
-	let searchTab_all = document.createElement("div");
+	const { anchor: anchor_all, searchTab: searchTab_all } = createSearchTabLink(
+		query,
+		""
+	);
+
 	searchTab_all.classList.add("searchTab");
 	if (searchType == "") {
 		searchTab_all.classList.add("selectedTab");
