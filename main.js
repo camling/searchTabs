@@ -71,20 +71,20 @@ function add_search_tabs() {
 	const options = optGroup.querySelectorAll("option");
 
 	for (let i = 0; i < options.length; i++) {
-		let textValue = options[i].innerText;
-		let searchValue = get_substring_by_character(options[i].value, ":");
+		const textValue = options[i].innerText;
+		const searchValue = get_substring_by_character(options[i].value, ":");
 
 		console.log(textValue);
 		console.log(searchValue);
 
-		let { anchor, searchTab } = createSearchTabLink(query, searchValue);
+		const { anchor, searchTab } = createSearchTabLink(query, searchValue);
 		searchTab.classList.add("searchTab");
 
 		if (searchType == searchValue) {
 			searchTab.classList.add("selectedTab");
 		}
 
-		let searchTabText = document.createTextNode(textValue);
+		const searchTabText = document.createTextNode(textValue);
 
 		searchTab.appendChild(searchTabText);
 		anchor.appendChild(searchTab);
