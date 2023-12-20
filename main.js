@@ -52,7 +52,7 @@ function createSearchTabLink(query, searchValue) {
 }
 
 function add_search_tabs() {
-	// Stop program from working on profiles you want want it on IE youth
+	// Stop program from working on profiles you want it on.  Example "youth"
 	if (checkURL("youth") || checkURL("mylists")) {
 		return;
 	}
